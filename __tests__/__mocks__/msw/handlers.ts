@@ -7,7 +7,7 @@ export const handlers = [
   // http.get('/user', ({ request }) => {
   //   return HttpResponse.json({ name: 'John' });
   // }),
-  rest.get('http://localhost:3000/api/show:showId', async (req, res, ctx) => {
+  rest.get('http://localhost:3000/api/shows/:showId', async (req, res, ctx) => {
     const { fakeShows } = await readFakeData();
     return res(ctx.json({ show: fakeShows[0] }));
   }),
