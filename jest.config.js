@@ -8,7 +8,7 @@ const createJestConfig = nextJest({
 
 // Add any custom config to be passed to Jest
 const customJestConfig = {
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   // to prevent non-test files from being interpreted as test files
   testRegex: "\\.test\\.[jt]sx?$",
   moduleNameMapper: {

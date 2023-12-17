@@ -46,7 +46,9 @@ interface ReservationProps {
 export const Reservation = ({ showId, submitPurchase }: ReservationProps) => {
   const [reservedSeatCount, setReservedSeatCount] =
     React.useState(DEFAULT_TICKET_COUNT);
+  
   const reservationId = generateRandomId();
+
   const onSubmit = () => submitPurchase({ reservationId, reservedSeatCount });
 
   const {
