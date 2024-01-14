@@ -43,9 +43,12 @@ export default function BandPage({
   band,
   error,
 }: {
+
+  
   band: Band | null;
   error: string | null;
-}): React.ReactElement {
+  }): React.ReactElement {
+  
   if (error)
     return <QueryError message={`Could not retrieve band data: ${error}`} />;
 

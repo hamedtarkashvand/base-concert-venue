@@ -18,6 +18,7 @@ export async function getStaticProps() {
 
   return {
     props: { isrBands },
+    revalidate:60
   };
 }
 
@@ -25,7 +26,8 @@ export default function Bands({
   isrBands,
 }: {
   isrBands: Array<Band>;
-}): React.ReactElement {
+  }): React.ReactElement {
+  
   return (
     <Stack align="center" spacing={10}>
       <Heading mt={10}>Our Illustrious Performers</Heading>

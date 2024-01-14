@@ -49,16 +49,19 @@ export default function SignIn() {
     { name: "password", display: "Password", default: "test" },
   ];
 
-  const handleSignIn = handleSubmit((data) =>
-    signIn("credentials", {
-      ...data,
-      redirect: false,
-    }).then(
-      // @ts-expect-error (docs for signIn return value conflict with TypeScript)
-      ({ error }) => {
-        if (error) setAuthError(error);
-      }
-    )
+  const handleSignIn = handleSubmit((data:SignInDetails) =>
+  {
+    if (!data) {return false}
+    
+        signIn('credentials', {
+          ...data,
+          redirect: false,
+        }).then(
+          ({ error }) => {
+            if (error) setAuthError(error);
+          }
+        );
+}
   );
 
   return (

@@ -14,6 +14,7 @@ export const createHandler = ({
       const { status, message } = processApiError(error);
       res.status(status).json({ message });
     },
+    
     onNoMatch(req: NextApiRequest, res: NextApiResponse) {
       res.status(405).end(`Method ${req.method} Not Allowed`);
     },

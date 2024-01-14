@@ -88,7 +88,7 @@ export default function Shows({
             <Box>
               <BandLinkHeading band={show.band} />
               <Text fontStyle="italic" color="gray.400" fontFamily="Lato">
-                {show.band.description}
+                {show.band?.description}
               </Text>
             </Box>
           </ListItem>

@@ -18,7 +18,8 @@ const getUserReservations = async (
     null,
     { data: { userReservations: Array<ReservationWithShow> } }
   >(`/api/${routes.users}/${userId}/reservations`);
-
+  
+  
   return data.data.userReservations;
 };
 
@@ -46,7 +47,7 @@ export const UserReservations = ({ userId }: { userId: number }) => {
         <Button mt={10}>Purchase tickets</Button>
       </Link>
     );
-
+  
   return (
     <>
       <Heading mt={10}>Your Tickets</Heading>
