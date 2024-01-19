@@ -15,8 +15,8 @@ handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(401).json({ message: 'invalid revalidation secret' });
   }
 
-  res.revalidate('/bands')
-  res.revalidate('/shows')
+  await res.revalidate('/bands')
+  await res.revalidate('/shows')
   return res.status(200).json({ revalidated : true});
 });
 

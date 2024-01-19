@@ -22,7 +22,9 @@ import { formatDate } from "@/lib/features/shows/utils";
 const THIRTY_SECONDS = 30 * 1000;
 
 const getShowsViaAPI = async () => {
-  const { data } = await axiosInstance.get(`/api/${routes.shows}`);
+  const { data } = await axiosInstance.get(
+    `/api/${routes.shows}`
+  );
   return data.shows;
 };
 
@@ -39,6 +41,7 @@ export async function getStaticProps() {
 
   return {
     props: { isrShows },
+    revalidate: 60,
   };
 }
 
@@ -57,7 +60,7 @@ export default function Shows({
       refreshInterval: THIRTY_SECONDS,
     }
   );
-
+    
   return (
     <Stack align="center" spacing={10}>
       <LoadingSpinner display={isValidating && !shows} />

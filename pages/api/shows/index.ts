@@ -32,12 +32,11 @@ handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
   // add show (here is where authorization would be validated)
   const { newShow } = req.body;
   const addedShow = await addShow(newShow);
-
   // revalidate shows page for ISR
   // note: this will change to `res.revalidate` when
   // this feature is out of beta
   // await res.unstable_revalidate("/shows");
-  await res.revalidate('/shows');
+  //await res.revalidate('/shows');
   return res.json({ show: addedShow, revalidated: true });
 });
 
