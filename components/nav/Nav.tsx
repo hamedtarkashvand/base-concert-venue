@@ -14,6 +14,7 @@ export function NavBar(): React.ReactElement {
   const { data: session } = useSession();
   const userName = session?.user?.email ?? "My Profile";
 
+  
   const links = [
     { display: "Shows", route: routes.shows },
     { display: "Bands", route: routes.bands },

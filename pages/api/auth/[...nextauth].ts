@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import NextAuth from "next-auth";
+import NextAuth, { Session } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import { axiosInstance } from "@/lib/axios/axiosInstance";
@@ -56,16 +56,17 @@ export default NextAuth({
       return token;
     },
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    async session({ session, token:{user} }) {
+    async session({ session, token:{user : user} }) {
 
       // reference: https://next-auth.js.org/configuration/callbacks#session-callback
       // Send properties to the client, like an access_token from a provider
 
-      const tokenUser = user as User;
-      // @ts-ignore
-      session.token = tokenUser.token;
-      session.user = tokenUser;
-      
+      const tokenUser = user as User;  
+ 
+      session = {
+        ...session,
+        ...tokenUser,
+      } as Session;
       return session;
     },
   },

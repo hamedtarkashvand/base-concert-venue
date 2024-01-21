@@ -21,6 +21,7 @@ export const createHandler = ({
   });
   if (authRequired) {
     handler.use(async (req, res, next) => {
+      console.log(req);
       const tokenIsValid = await validateToken(req);
       if (!tokenIsValid) return res.status(401).end();
       return next();

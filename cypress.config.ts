@@ -6,6 +6,8 @@ import { resetDB } from './__tests__/__mocks__/db/utils/reset-db';
 export default defineConfig({
   env: {
     REVALIDATION_SECRET: process.env.REVALIDATION_SECRET,
+    CYPRESS_TEST_USER_PASSWORD: process.env.CYPRESS_TEST_USER_PASSWORD,
+    CYPRESS_TEST_USER_EMAIL: process.env.CYPRESS_TEST_USER_EMAIL,
   },
   e2e: {
     baseUrl: 'http://localhost:3000',
