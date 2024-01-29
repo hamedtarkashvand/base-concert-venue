@@ -1,6 +1,5 @@
 import { rest } from 'msw';
 import { readFakeData } from '@/__tests__/__mocks__/fakeData';
-import { getReservationsByUserId } from '@/lib/features/users/queries';
 import { fakeUserReservations } from '../fakeData/userReservations';
 export const handlers = [
   // And here's a request handler with MSW

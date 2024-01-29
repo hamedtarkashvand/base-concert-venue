@@ -1,3 +1,4 @@
+
 import BandPage from '@/pages/bands/[bandId]';
 import { readFakeData } from '@/__tests__/__mocks__/fakeData';
 import { screen, render } from '@testing-library/react';
@@ -18,7 +19,7 @@ describe('Band page testing', () => {
     expect(heading).toBeInTheDocument();
 
     const image = screen.getByAltText('band photo');
-    expect(image?.alt).toContain('band photo');
+    expect(image?.alt).contain('band photo');
   });
 
   test('should have error message ', async () => {

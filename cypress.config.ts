@@ -11,7 +11,7 @@ export default defineConfig({
   },
   e2e: {
     baseUrl: 'http://localhost:3000',
-    setupNodeEvents(on, config) {
+    setupNodeEvents(on: Cypress.PluginEvents, config) {
       // implement node event listeners here
       //config.env.REVALIDATION_SECRET = process.env.REVALIDATION_SECRET;
 
