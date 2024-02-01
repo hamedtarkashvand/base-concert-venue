@@ -1,6 +1,4 @@
 /* ****** Add new user ***** */
-import { Operation } from "fast-json-patch";
-
 import {
   deleteItem,
   filenames,
@@ -8,19 +6,19 @@ import {
   getJSONfromFile,
   updateItem,
   writeJSONToFile,
-} from "@/lib/db/db-utils";
-import { getReservations } from "@/lib/features/reservations/queries";
-import type { ReservationWithShow } from "@/lib/features/reservations/types";
-import { getShowById } from "@/lib/features/shows/queries";
-
-import type { AuthUser, NewAuthUser } from "./types";
+} from '@/lib/db/db-utils';
+import { getReservations } from '@/lib/features/reservations/queriesReservations';
+import type { ReservationWithShow } from '@/lib/features/reservations/types';
+import { getShowById } from '@/lib/features/shows/queriesShow';
+import { Operation } from 'fast-json-patch';
+import type { AuthUser, NewAuthUser } from './types';
 
 export function getUsers(): Promise<AuthUser[]> {
   return getJSONfromFile<AuthUser>(filenames.users);
 }
 
 export async function getUserById(userId: number): Promise<AuthUser> {
-  return getItemById<AuthUser>(userId, filenames.users, "user");
+  return getItemById<AuthUser>(userId, filenames.users, 'user');
 }
 
 export async function addUser(newUserData: NewAuthUser): Promise<AuthUser> {

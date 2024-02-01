@@ -1,14 +1,13 @@
 /* eslint-disable no-param-reassign */
-import { venueCapacity } from "@/lib/db/constants";
+import { venueCapacity } from '@/lib/db/constants';
 import {
   filenames,
   getItemById,
   getJSONfromFile,
   writeJSONToFile,
-} from "@/lib/db/db-utils";
-import { getAvailableSeatCountByShowId } from "@/lib/features/reservations/queries";
-
-import type { Show, ShowWithoutAvailableSeatCount } from "./types";
+} from '@/lib/db/db-utils';
+import { getAvailableSeatCountByShowId } from '@/lib/features/reservations/queriesReservations';
+import type { Show, ShowWithoutAvailableSeatCount } from './types';
 
 export async function writeShows(
   newShowsArray: ShowWithoutAvailableSeatCount[]
@@ -39,7 +38,7 @@ export async function getShowById(showId: number): Promise<Show> {
   const showWithoutSeatCount = await getItemById<ShowWithoutAvailableSeatCount>(
     showId,
     filenames.shows,
-    "show"
+    'show'
   );
   const availableSeatCountByShowId = await getAvailableSeatCountByShowId();
   const availableSeatCount =

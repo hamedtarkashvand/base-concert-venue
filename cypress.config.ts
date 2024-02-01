@@ -1,6 +1,6 @@
 import { defineConfig } from 'cypress';
 import { addBand } from './lib/features/bands/queries';
-import { addReservation } from './lib/features/reservations/queries';
+import { addReservation } from './lib/features/reservations/queriesReservations';
 import { resetDB } from './__tests__/__mocks__/db/utils/reset-db';
 
 export default defineConfig({

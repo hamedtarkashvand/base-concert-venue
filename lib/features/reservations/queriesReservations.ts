@@ -78,3 +78,5 @@ export async function addReservation(
 export async function deleteReservation(id: number): Promise<void> {
   await deleteItem<Reservation>(filenames.reservations, id);
 }
+
+export default {};

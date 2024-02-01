@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "types": [
+      "node",
       "cypress",
       "@testing-library/cypress",
       "@testing-library/jest-dom",
@@ -37,8 +38,8 @@
     "**/*.tsx",
     "jest.setup.ts",
     "node_modules/cypress",
-    "./cypress/**/*.js"],
+    "./cypress/**/*.js", "__tests__/api/shows.test.ts"],
   "exclude": [
-    "node_modules"
+    "/node_modules"
   ]
 }

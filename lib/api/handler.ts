@@ -14,14 +14,12 @@ export const createHandler = ({
       const { status, message } = processApiError(error);
       res.status(status).json({ message });
     },
-    
     onNoMatch(req: NextApiRequest, res: NextApiResponse) {
       res.status(405).end(`Method ${req.method} Not Allowed`);
     },
   });
   if (authRequired) {
     handler.use(async (req, res, next) => {
-      console.log(req);
       const tokenIsValid = await validateToken(req);
       if (!tokenIsValid) return res.status(401).end();
       return next();

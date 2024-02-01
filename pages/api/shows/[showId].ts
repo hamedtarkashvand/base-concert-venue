@@ -1,7 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-
-import { createHandler } from "@/lib/api/handler";
-import { getShowById } from "@/lib/features/shows/queries";
+import { createHandler } from '@/lib/api/handler';
+import { getShowById } from '@/lib/features/shows/queriesShow';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = createHandler();
 handler.get(async (req: NextApiRequest, res: NextApiResponse) => {

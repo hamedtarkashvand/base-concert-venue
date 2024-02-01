@@ -1,14 +1,12 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-
-import { createHandler } from "@/lib/api/handler";
-import { generateData } from "@/lib/db/data/generateData";
-import { addShow, getShows } from "@/lib/features/shows/queries";
+import { createHandler } from '@/lib/api/handler';
+import { generateData } from '@/lib/db/data/generateData';
+import { addShow, getShows } from '@/lib/features/shows/queriesShow';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = createHandler();
 handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
   let shows = await getShows();
 
-  // generate shows if there aren't any
   if (shows.length === 0) {
     await generateData();
     shows = await getShows();
@@ -26,7 +24,7 @@ handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
 
   // Check for secret to confirm this is a valid request
   if (req.query.secret !== process.env.REVALIDATION_SECRET) {
-    return res.status(401).json({ message: "Invalid revalidation token" });
+    return res.status(401).json({ message: 'Invalid revalidation token' });
   }
 
   // add show (here is where authorization would be validated)
