@@ -1,7 +1,10 @@
 import { testApiHandler } from 'next-test-api-route-handler'; // ◄ Must be first import
 import userHandler from '@/pages/api/users/index';
 import userReservationsHandler from '@/pages/api/users/[userId]/reservations';
+import { validateToken } from '@/lib/auth/utils';
+
 jest.mock('@/lib/auth/utils')
+
 test('GET api/users/[userId]/reservations receives check token', async () => {
   await testApiHandler({
     handler: userReservationsHandler,
@@ -19,7 +22,7 @@ test('GET api/users/[userId]/reservations receives check token', async () => {
     },
   });
 });
-jest.mock('@/lib/auth/utils');
+
 test('GET /user/[userId]/reservations  not receives', async () => {
   await testApiHandler({
     handler: userReservationsHandler,
@@ -51,17 +54,14 @@ test('POST api/users receives token with correct credentials', async () => {
       });
 
       expect(res.status).toBe(200);
-
       const json = await res.json();
-      
       expect(json).toHaveProperty('user')
       expect(json.user).toHaveProperty('id')
       expect(json.user.id).toEqual(1)
       expect(json.user).toHaveProperty('email')
       expect(json.user.email).toEqual('test@test.test');
       expect(json.user).toHaveProperty('token');
-
-
     },
   });
-});
+})
+
