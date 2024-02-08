@@ -4,7 +4,7 @@ import { testApiHandler } from 'next-test-api-route-handler'; // ◄ Must be fir
 import  showHandler from '@/pages/api/shows/index';
 import  showIdHandler from '@/pages/api/shows/[showId]';
 import { readFakeData } from '@/__tests__/__mocks__/fakeData';
-test('should get data after call endpoint ', async () => {
+test('GET api/shows 200 status and  get data ', async () => {
   await testApiHandler({
     handler: showHandler,
     test: async ({ fetch }) => {
@@ -16,7 +16,7 @@ test('should get data after call endpoint ', async () => {
     },
   });
 });
-test('should get data after pass sent parameters url call endpoint ', async () => {
+test('GET  data after pass sent parameters url call endpoint ', async () => {
   await testApiHandler({
     handler: showIdHandler,
     paramsPatcher: (params) => {
@@ -30,4 +30,24 @@ test('should get data after pass sent parameters url call endpoint ', async () =
       expect(resp).toEqual({ show: fakeShows[0] });
     },
   });
+});
+
+test('POST api/shows returns 401 status for incorrect revalidate secret', async () => {
+
+ await testApiHandler({
+   handler: showHandler,
+   paramsPatcher: (param) => {
+     param.queryStringURLParams = {secret : 'not the real secret'}
+   },
+   test: async ({fetch}) => {
+     
+     const rsp = await fetch({
+       method: 'POST',
+     });
+
+     expect(rsp.status).toEqual(401);
+    
+   }
+ });
+
 });

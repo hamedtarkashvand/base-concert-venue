@@ -4,7 +4,7 @@ import userReservationsHandler from '@/pages/api/users/[userId]/reservations';
 import { validateToken } from '@/lib/auth/utils';
 
 jest.mock('@/lib/auth/utils')
-
+const mockValidateToken = validateToken as jest.Mock;
 test('GET api/users/[userId]/reservations receives check token', async () => {
   await testApiHandler({
     handler: userReservationsHandler,
@@ -62,6 +62,45 @@ test('POST api/users receives token with correct credentials', async () => {
       expect(json.user.email).toEqual('test@test.test');
       expect(json.user).toHaveProperty('token');
     },
-  });
+  }); 
 })
+
+test('should authentication user have status code 401', async () => {
+  mockValidateToken.mockResolvedValue(false);
+  await testApiHandler({
+    handler: userReservationsHandler,
+    paramsPatcher: (param) => {
+      param.userId = 1;
+    },
+    test: async ({ fetch }) => {
+      const res = await fetch({
+        method: 'GET',
+      });
+      expect(res.status).toBe(401);
+    },
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
